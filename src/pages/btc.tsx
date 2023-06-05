@@ -68,14 +68,16 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 
   const xmlSafeBtcUrl = btcChartUrl.replace(/&/g, '&amp;');
 
-  // Create your RSS XML
-  const xml = `<?xml version="1.0" encoding="UTF-8" ?>
-  <rss version="2.0">
+    // Create your RSS XML
+    const xml = `<?xml version="1.0" encoding="UTF-8" ?>
+    <rss version="2.0">
     <channel>
-    <author>BankkRoll.eth</author>
-    <title>BTC Price Monitoring RSS Feed</title>
-    <summary>24HR changes in Bitcoin prices</summary>
-    <link>https://bankkrss.vercel.app/btc</link>
+        <author>BankkRoll.eth</author>
+        <title>BTC Price Monitoring RSS Feed</title>
+        <summary>24HR changes in Bitcoin prices</summary>
+        <link>https://bankkrss.vercel.app/btc</link>
+    <pubDate>${new Date().toUTCString()}</pubDate>
+
       <item>
         <title>24-hour BTC Prices</title>
         <summary>${xmlSafeBtcUrl}</summary>

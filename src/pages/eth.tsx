@@ -68,14 +68,15 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 
   const xmlSafeEthUrl = ethChartUrl.replace(/&/g, '&amp;');
 
-  // Create your RSS XML
-  const xml = `<?xml version="1.0" encoding="UTF-8" ?>
-  <rss version="2.0">
+    // Create your RSS XML
+    const xml = `<?xml version="1.0" encoding="UTF-8" ?>
+    <rss version="2.0">
     <channel>
-    <author>BankkRoll.eth</author>
-    <title>ETH Price Monitoring RSS Feed</title>
-    <summary>24HR changes in Ethereum prices</summary>
-    <link>https://bankkrss.vercel.app/eth</link>
+        <author>BankkRoll.eth</author>
+        <title>ETH Price Monitoring RSS Feed</title>
+        <summary>24HR changes in Ethereum prices</summary>
+        <link>https://bankkrss.vercel.app/eth</link>
+        <pubDate>${new Date().toUTCString()}</pubDate>
       <item>
         <title>24-hour ETH Prices</title>
         <summary>${xmlSafeEthUrl}</summary>
