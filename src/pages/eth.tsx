@@ -70,7 +70,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 
   // Create your RSS XML
   const xml = `<?xml version="1.0" encoding="UTF-8" ?>
-  <rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <rss version="2.0">
     <channel>
     <author>BankkRoll.eth</author>
     <title>ETH Price Monitoring RSS Feed</title>
