@@ -72,18 +72,19 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     const xml = `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0">
     <channel>
-        <author>BankkRoll.eth</author>
         <title>BTC Price Monitoring RSS Feed</title>
         <summary>24HR changes in Bitcoin prices</summary>
-        <link>https://bankkrss.vercel.app/btc</link>
-        <pubDate>${new Date().toUTCString()}</pubDate>
+        <url>https://bankkrss.vercel.app/btc</url>
+        <published_date>${new Date().toUTCString()}</published_date>
       <item>
         <title>24-hour BTC Prices</title>
         <summary><img src="${xmlSafeBtcUrl}" alt="Bitcoin Prices"/></summary>
-        <link>https://bankkrss.vercel.app/btc</link>
+        <url>https://bankkrss.vercel.app/btc</url>
+        <guid>https://bankkrss.vercel.app/btc</guid>
+        <published_date>${new Date().toUTCString()}</published_date>
       </item>
     </channel>
-  </rss>`
+    </rss>`
 
   // Set the content type to 'text/xml'
   res.setHeader('Content-Type', 'text/xml')
