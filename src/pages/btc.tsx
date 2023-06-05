@@ -73,14 +73,13 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   <rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
     <channel>
     <author>BankkRoll.eth</author>
-    <title>Your Cryptocurrency Price Monitoring RSS Feed</title>
-    <description>Keep track of the daily changes in Bitcoin and Ethereum prices</description>
+    <title>BTC Price Monitoring RSS Feed</title>
+    <summary>24HR changes in Bitcoin prices</summary>
     <link>https://bankkrss.vercel.app/btc</link>
       <item>
         <title>24-hour BTC Prices</title>
-        <description>See the latest prices for Bitcoin over the last 24 hours.</description>
+        <summary>${xmlSafeBtcUrl}</summary>
         <link>https://bankkrss.vercel.app/btc</link>
-        <media:content url="${xmlSafeBtcUrl}" medium="image" />
       </item>
     </channel>
   </rss>`
