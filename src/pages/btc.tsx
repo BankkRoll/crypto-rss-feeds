@@ -3,6 +3,7 @@
 import { GetServerSideProps } from 'next'
 import axios from 'axios'
 import querystring from 'querystring'
+import { format } from 'date-fns'
 
 export default function Bitcoin() {}
 
@@ -71,6 +72,9 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const xmlSafeBtcUrl = btcChartUrl.replace(/&/g, '&amp;');
 
     // BTC RSS XML
+    const date = new Date()
+    const pubDate = format(date, 'EEE, dd MMM yyyy HH:mm:ss O') // RFC 822 format
+
     const xml = `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0">
     <channel>
@@ -78,7 +82,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
         <description>24HR changes in Bitcoin prices</description>
         <link>https://bankkrss.vercel.app/btc</link>
         <language>en</language>
-        <pubDate>${new Date().toUTCString()}</pubDate>
+        <pubDate>${pubDate}</pubDate>
       <item>
         <title>24-hour BTC Prices</title>
         <description><img src="${xmlSafeBtcUrl}" alt="Bitcoin Prices"/></description>

@@ -1,12 +1,11 @@
 // index.tsx
-
 import { GetServerSideProps } from 'next'
 import axios from 'axios'
+import { format } from 'date-fns'
 
 export default function Home() {}
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  // Fetch the current price, 24hr volume, 24hr change, and market cap for bitcoin and ethereum
   const response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true')
 
   const btcData = response.data.bitcoin;
@@ -19,15 +18,16 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const eth24hrChange = ethData.usd_24h_change;
   const ethPrice24hrAgo = ethPriceNow / (1 + eth24hrChange / 100);
 
-  
-  // index RSS XML
+  const date = new Date()
+  const pubDate = format(date, 'EEE, dd MMM yyyy HH:mm:ss O') // RFC 822 format
+
   const xml = `<?xml version="1.0" encoding="UTF-8" ?>
   <rss version="2.0">
     <channel>
       <title>Your Cryptocurrency Price Monitoring RSS Feed</title>
       <description>Keep track of the daily changes in Bitcoin and Ethereum prices</description>
       <language>en</language>
-      <pubDate>${new Date().toUTCString()}</pubDate>
+      <pubDate>${pubDate}</pubDate>
       <link>https://bankkrss.vercel.app/</link>
       <item>
         <title>24-hour BTC Change</title>
@@ -44,8 +44,6 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     </channel>
   </rss>`
 
-
-  // Set the content type to 'text/xml'
   res.setHeader('Content-Type', 'text/xml')
   res.write(xml)
   res.end()
