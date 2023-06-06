@@ -74,7 +74,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 
       // ETH RSS XML
       const date = new Date()
-      const pubDate = format(utcToZonedTime(date, 'GMT'), 'EEE, dd MMM yyyy HH:mm:ss O')
+      const pubDate = format(utcToZonedTime(date, 'GMT'), 'EEE, dd MMM yyyy HH:mm:ss xx')
 
       const xml = `<?xml version="1.0" encoding="UTF-8" ?>
       <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
