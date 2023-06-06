@@ -27,10 +27,10 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     <channel>
       <title>Your Cryptocurrency Price Monitoring RSS Feed</title>
       <description>Keep track of the daily changes in Bitcoin and Ethereum prices</description>
-      <language>en</language>
-      <pubDate>${pubDate}</pubDate>
       <link>https://bankkrss.vercel.app/</link>
       <atom:link href="https://bankkrss.vercel.app/" rel="self" type="application/rss+xml" />
+      <language>en</language>
+      <pubDate>${pubDate}</pubDate>
       <item>
         <title>24-hour BTC Change</title>
         <link>https://bankkrss.vercel.app/btc</link>
