@@ -70,8 +70,6 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   })}`
 
   const xmlSafeEthUrl = ethChartUrl.replace(/&/g, '&amp;');
-  const date = new Date()
-  const pubDate = format(date, 'EEE, dd MMM yyyy HH:mm:ss O') // RFC 822 format
 
     // ETH RSS XML
     const xml = `<?xml version="1.0" encoding="UTF-8" ?>
@@ -81,13 +79,12 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
         <description>24HR changes in Ethereum prices</description>
         <link>https://bankkrss.vercel.app/eth</link>
         <language>en</language>
-        <pubDate>Published: ${new Date().toUTCString()}</pubDate>
+        <pubDate>${new Date().toUTCString()}</pubDate>
       <item>
         <title>24-hour ETH Prices</title>
         <description><img src="${xmlSafeEthUrl}" alt="Ethereum Prices"/></description>
         <link>https://bankkrss.vercel.app/eth</link>
         <guid>https://bankkrss.vercel.app/eth</guid>
-        <pubDate>${pubDate}</pubDate>
       </item>
     </channel>
     </rss>`

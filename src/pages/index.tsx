@@ -20,9 +20,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const eth24hrChange = ethData.usd_24h_change;
   const ethPrice24hrAgo = ethPriceNow / (1 + eth24hrChange / 100);
 
-  const date = new Date()
-  const pubDate = format(date, 'EEE, dd MMM yyyy HH:mm:ss O')  // RFC 822 format
-
+  
   // index RSS XML
   const xml = `<?xml version="1.0" encoding="UTF-8" ?>
   <rss version="2.0">
@@ -30,7 +28,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
       <title>Your Cryptocurrency Price Monitoring RSS Feed</title>
       <description>Keep track of the daily changes in Bitcoin and Ethereum prices</description>
       <language>en</language>
-      <pubDate>${pubDate}</pubDate>
+      <pubDate>${new Date().toUTCString()}</pubDate>
       <link>https://bankkrss.vercel.app/</link>
       <item>
         <title>24-hour BTC Change</title>
