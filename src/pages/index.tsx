@@ -2,7 +2,6 @@
 
 import { GetServerSideProps } from 'next'
 import axios from 'axios'
-import { format } from 'date-fns'
 
 export default function Home() {}
 
