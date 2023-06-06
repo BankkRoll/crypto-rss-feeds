@@ -1,3 +1,5 @@
+// btc.tsx
+
 import { GetServerSideProps } from 'next'
 import axios from 'axios'
 import querystring from 'querystring'
@@ -74,15 +76,14 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     <channel>
         <title>BTC Price Monitoring RSS Feed</title>
         <description>24HR changes in Bitcoin prices</description>
-        <url>https://bankkrss.vercel.app/btc</url>
+        <link>https://bankkrss.vercel.app/btc</link>
         <language>en</language>
         <pubDate>Published: ${new Date().toUTCString()}</pubDate>
       <item>
         <title>24-hour BTC Prices</title>
         <description><img src="${xmlSafeBtcUrl}" alt="Bitcoin Prices"/></description>
-        <url>https://bankkrss.vercel.app/btc</url>
+        <link>https://bankkrss.vercel.app/btc</link>
         <guid>https://bankkrss.vercel.app/btc</guid>
-        <published_date>${new Date().toUTCString()}</published_date>
       </item>
     </channel>
     </rss>`
