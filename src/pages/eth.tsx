@@ -3,6 +3,7 @@
 import { GetServerSideProps } from 'next'
 import axios from 'axios'
 import querystring from 'querystring'
+import { format } from 'date-fns'
 
 export default function Ethereum() {}
 
@@ -69,8 +70,10 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   })}`
 
   const xmlSafeEthUrl = ethChartUrl.replace(/&/g, '&amp;');
+  const date = new Date()
+  const pubDate = format(date, 'EEE, dd MMM yyyy HH:mm:ss O') // RFC 822 format
 
-    // Create your RSS XML
+    // ETH RSS XML
     const xml = `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0">
     <channel>
@@ -84,7 +87,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
         <description><img src="${xmlSafeEthUrl}" alt="Ethereum Prices"/></description>
         <link>https://bankkrss.vercel.app/eth</link>
         <guid>https://bankkrss.vercel.app/eth</guid>
-        <published_date>${new Date().toUTCString()}</published_date>
+        <pubDate>${pubDate}</pubDate>
       </item>
     </channel>
     </rss>`
