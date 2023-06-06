@@ -73,12 +73,13 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     <rss version="2.0">
     <channel>
         <title>BTC Price Monitoring RSS Feed</title>
-        <summary>24HR changes in Bitcoin prices</summary>
+        <description>24HR changes in Bitcoin prices</description>
         <url>https://bankkrss.vercel.app/btc</url>
-        <published_date>${new Date().toUTCString()}</published_date>
+        <language>en</language>
+        <pubDate>Published: ${new Date().toUTCString()}</pubDate>
       <item>
         <title>24-hour BTC Prices</title>
-        <summary><img src="${xmlSafeBtcUrl}" alt="Bitcoin Prices"/></summary>
+        <description><img src="${xmlSafeBtcUrl}" alt="Bitcoin Prices"/></description>
         <url>https://bankkrss.vercel.app/btc</url>
         <guid>https://bankkrss.vercel.app/btc</guid>
         <published_date>${new Date().toUTCString()}</published_date>

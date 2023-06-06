@@ -25,23 +25,24 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     <channel>
       <title>Your Cryptocurrency Price Monitoring RSS Feed</title>
       <description>Keep track of the daily changes in Bitcoin and Ethereum prices</description>
+      <language>en</language>
+      <pubDate>Published: ${new Date().toUTCString()}</pubDate>
       <link>https://bankkrss.vercel.app/</link>
       <item>
         <title>24-hour BTC Change</title>
+        <link>https://bankkrss.vercel.app/btc</link>
         <description>Bitcoin - Price 24 hours ago: $${new Intl.NumberFormat().format(btcPrice24hrAgo)}, Current price: $${new Intl.NumberFormat().format(btcPriceNow)}, 24h change: ${btc24hrChange.toFixed(2)}%.</description>
-        <url>https://bankkrss.vercel.app/btc</url>
-        <published_date>${new Date().toUTCString()}</published_date>
-        <guid>https://bankkrss.vercel.app/btc</guid>
+        <guid isPermaLink="false">https://bankkrss.vercel.app/btc</guid>
       </item>
       <item>
         <title>24-hour ETH Change</title>
         <description>Ethereum - Price 24 hours ago: $${new Intl.NumberFormat().format(ethPrice24hrAgo)}, Current price: $${new Intl.NumberFormat().format(ethPriceNow)}, 24h change: ${eth24hrChange.toFixed(2)}%.</description>
-        <url>https://bankkrss.vercel.app/eth</url>
-        <published_date>${new Date().toUTCString()}</published_date>
-        <guid>https://bankkrss.vercel.app/eth</guid>
+        <link>https://bankkrss.vercel.app/eth</link>
+        <guid isPermaLink="false">https://bankkrss.vercel.app/eth</guid>
       </item>
     </channel>
   </rss>`
+
 
   // Set the content type to 'text/xml'
   res.setHeader('Content-Type', 'text/xml')
