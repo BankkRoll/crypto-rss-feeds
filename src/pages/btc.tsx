@@ -4,6 +4,7 @@ import { GetServerSideProps } from 'next'
 import axios from 'axios'
 import querystring from 'querystring'
 import { format } from 'date-fns'
+import { utcToZonedTime } from 'date-fns-tz'
 
 export default function Bitcoin() {}
 
@@ -73,7 +74,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 
     // BTC RSS XML
     const date = new Date()
-    const pubDate = format(date, 'EEE, dd MMM yyyy HH:mm:ss xxx')
+    const pubDate = format(utcToZonedTime(date, 'GMT'), 'EEE, dd MMM yyyy HH:mm:ss O')
     
     const xml = `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
