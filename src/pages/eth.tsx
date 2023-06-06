@@ -73,14 +73,15 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 
       // ETH RSS XML
       const date = new Date()
-      const pubDate = format(date, 'EEE, dd MMM yyyy HH:mm:ss OOOO')
+      const pubDate = format(date, 'EEE, dd MMM yyyy HH:mm:ss O')
 
       const xml = `<?xml version="1.0" encoding="UTF-8" ?>
-      <rss version="2.0">
+      <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
       <channel>
           <title>ETH Price Monitoring RSS Feed</title>
           <description>24HR changes in Ethereum prices</description>
           <link>https://bankkrss.vercel.app/eth</link>
+          <atom:link href="https://bankkrss.vercel.app/eth" rel="self" type="application/rss+xml" />
           <language>en</language>
           <pubDate>${pubDate}</pubDate>
       <item>
