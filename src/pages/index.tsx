@@ -7,8 +7,8 @@ import { utcToZonedTime } from 'date-fns-tz'
 export default function Home() {}
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  const response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true')
-
+  try {
+    const response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true')
   const btcData = response.data.bitcoin;
   const btcPriceNow = btcData.usd;
   const btc24hrChange = btcData.usd_24h_change;
@@ -47,8 +47,13 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   res.setHeader('Content-Type', 'text/xml')
   res.write(xml)
   res.end()
+} catch (error) {
+  console.error("Error fetching data: ", error)
+  res.statusCode = 500
+  res.end()
+}
 
-  return {
-    props: {},
-  }
+return {
+  props: {},
+}
 }
