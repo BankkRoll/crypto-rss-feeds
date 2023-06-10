@@ -80,15 +80,15 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>BTC Price Monitoring RSS Feed</title>
-        <description>24HR changes in Bitcoin prices</description>
         <link>https://bankkrss.vercel.app/btc</link>
+        <description>24HR changes in Bitcoin prices</description>
         <atom:link href="https://bankkrss.vercel.app/btc" rel="self" type="application/rss+xml" />
         <language>en</language>
         <pubDate>${pubDate}</pubDate>
       <item>
         <title>24-hour BTC Prices</title>
-        <description>${xmlSafeBtcUrl}</description>
         <link>https://bankkrss.vercel.app/btc</link>
+        <description>${xmlSafeBtcUrl}</description>
       </item>
     </channel>
     </rss>`

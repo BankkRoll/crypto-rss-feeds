@@ -26,8 +26,8 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
       <title>Your Cryptocurrency Price Monitoring RSS Feed</title>
-      <description>Keep track of the daily changes in Bitcoin and Ethereum prices</description>
       <link>https://bankkrss.vercel.app/</link>
+      <description>Keep track of the daily changes in Bitcoin and Ethereum prices</description>
       <atom:link href="https://bankkrss.vercel.app/" rel="self" type="application/rss+xml" />
       <language>en</language>
       <pubDate>${pubDate}</pubDate>
@@ -38,8 +38,8 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
       </item>
       <item>
         <title>24-hour ETH Change</title>
-        <description>Ethereum - Price 24 hours ago: $${new Intl.NumberFormat().format(ethPrice24hrAgo)}, Current price: $${new Intl.NumberFormat().format(ethPriceNow)}, 24h change: ${eth24hrChange.toFixed(2)}%.</description>
         <link>https://bankkrss.vercel.app/eth</link>
+        <description>Ethereum - Price 24 hours ago: $${new Intl.NumberFormat().format(ethPrice24hrAgo)}, Current price: $${new Intl.NumberFormat().format(ethPriceNow)}, 24h change: ${eth24hrChange.toFixed(2)}%.</description>
       </item>
     </channel>
   </rss>`
