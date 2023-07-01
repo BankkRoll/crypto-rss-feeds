@@ -8,7 +8,7 @@ export default function Home() {}
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   try {
-    const response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true')
+  const response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true')
   const btcData = response.data.bitcoin;
   const btcPriceNow = btcData.usd;
   const btc24hrChange = btcData.usd_24h_change;

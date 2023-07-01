@@ -75,18 +75,27 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     // BTC RSS XML
     const date = new Date()
     const pubDate = format(utcToZonedTime(date, 'GMT'), 'EEE, dd MMM yyyy HH:mm:ss xx')
-    
-    const xml = `<?xml version="1.0" encoding="UTF-8" ?>
+
+  // Fetch the current bitcoin price and 24 hour change from CoinGecko API
+  const btcPriceResponse = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true')
+  const btcData = btcPriceResponse.data.bitcoin;
+  const btcPriceNow = btcData.usd;
+  const btc24hrChange = btcData.usd_24h_change;
+  const btcPrice24hrAgo = btcPriceNow / (1 + btc24hrChange / 100);
+
+  const btcTitle = `24-hour BTC Change - Price 24 hours ago: $${new Intl.NumberFormat().format(btcPrice24hrAgo)}, Current price: $${new Intl.NumberFormat().format(btcPriceNow)}, 24h change: ${btc24hrChange.toFixed(2)}%.`
+
+  const xml = `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>BTC Price Monitoring RSS Feed</title>
+        <title>${btcTitle}</title>
         <link>https://bankkrss.vercel.app/btc</link>
-        <description>24HR changes in Bitcoin prices</description>
+        <description>${btcTitle}</description>
         <atom:link href="https://bankkrss.vercel.app/btc" rel="self" type="application/rss+xml" />
         <language>en</language>
         <pubDate>${pubDate}</pubDate>
       <item>
-        <title>24-hour BTC Prices</title>
+        <title>${btcTitle}</title>
         <link>https://bankkrss.vercel.app/btc</link>
         <description>${xmlSafeBtcUrl}</description>
         <pubDate>${pubDate}</pubDate>

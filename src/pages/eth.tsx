@@ -76,17 +76,28 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
       const date = new Date()
       const pubDate = format(utcToZonedTime(date, 'GMT'), 'EEE, dd MMM yyyy HH:mm:ss xx')
 
-      const xml = `<?xml version="1.0" encoding="UTF-8" ?>
-      <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-      <channel>
-          <title>ETH Price Monitoring RSS Feed</title>
-          <link>https://bankkrss.vercel.app/eth</link>
-          <description>24HR changes in Ethereum prices</description>
-          <atom:link href="https://bankkrss.vercel.app/eth" rel="self" type="application/rss+xml" />
-          <language>en</language>
-          <pubDate>${pubDate}</pubDate>
+
+        // Fetch the current Ethereum price and 24 hour change from CoinGecko API
+  const ethPriceResponse = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_24hr_change=true')
+  const ethData = ethPriceResponse.data.ethereum;
+  const ethPriceNow = ethData.usd;
+  const eth24hrChange = ethData.usd_24h_change;
+  const ethPrice24hrAgo = ethPriceNow / (1 + eth24hrChange / 100);
+  
+  const ethTitle = `24-hour ETH Change - Price 24 hours ago: $${new Intl.NumberFormat().format(ethPrice24hrAgo)}, Current price: $${new Intl.NumberFormat().format(ethPriceNow)}, 24h change: ${eth24hrChange.toFixed(2)}%.`
+
+
+  const xml = `<?xml version="1.0" encoding="UTF-8" ?>
+    <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>${ethTitle}</title>
+        <link>https://bankkrss.vercel.app/eth</link>
+        <description>${ethTitle}</description>
+        <atom:link href="https://bankkrss.vercel.app/eth" rel="self" type="application/rss+xml" />
+        <language>en</language>
+        <pubDate>${pubDate}</pubDate>
       <item>
-        <title>24-hour ETH Prices</title>
+        <title>${ethTitle}</title>
         <link>https://bankkrss.vercel.app/eth</link>
         <description>${xmlSafeEthUrl}</description>
         <pubDate>${pubDate}</pubDate>
