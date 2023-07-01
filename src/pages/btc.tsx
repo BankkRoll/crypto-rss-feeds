@@ -85,10 +85,10 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 
   const btcTitle = `<![CDATA[
     **24-hour BTC Change**
-    - **Price 24 hours ago:** $${new Intl.NumberFormat().format(btcPrice24hrAgo)}
-    - **Current price:** $${new Intl.NumberFormat().format(btcPriceNow)}
-    - **24h change:** ${btc24hrChange.toFixed(2)}%
-    ]]>`
+    > **Price 24 hours ago:** $${new Intl.NumberFormat().format(btcPrice24hrAgo)}
+    > **Current price:** $${new Intl.NumberFormat().format(btcPriceNow)}
+    > **24h change:** ${btc24hrChange.toFixed(2)}%
+    ]]>`;
   
   const xml = `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
