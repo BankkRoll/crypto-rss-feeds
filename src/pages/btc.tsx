@@ -39,7 +39,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
           label: 'BTC',
           data: Object.values(hourlyBtcPrices),
           borderColor: 'orange',
-          backgroundColor: 'rgba(255, 165, 0, 0.8)',
+          backgroundColor: 'rgba(255, 165, 0, 0.1)',
           fill: true,
         },
       ],
