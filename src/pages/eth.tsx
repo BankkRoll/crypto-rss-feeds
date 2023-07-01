@@ -89,6 +89,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
         <title>24-hour ETH Prices</title>
         <link>https://bankkrss.vercel.app/eth</link>
         <description>${xmlSafeEthUrl}</description>
+        <pubDate>${pubDate}</pubDate>
       </item>
     </channel>
     </rss>`
