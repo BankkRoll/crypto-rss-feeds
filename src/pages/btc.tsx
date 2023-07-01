@@ -89,6 +89,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
         <title>24-hour BTC Prices</title>
         <link>https://bankkrss.vercel.app/btc</link>
         <description>${xmlSafeBtcUrl}</description>
+        <pubDate>${pubDate}</pubDate>
       </item>
     </channel>
     </rss>`
