@@ -84,8 +84,12 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const eth24hrChange = ethData.usd_24h_change;
   const ethPrice24hrAgo = ethPriceNow / (1 + eth24hrChange / 100);
   
-  const ethTitle = `24-hour ETH Change - Price 24 hours ago: $${new Intl.NumberFormat().format(ethPrice24hrAgo)}, Current price: $${new Intl.NumberFormat().format(ethPriceNow)}, 24h change: ${eth24hrChange.toFixed(2)}%.`
-
+  const ethTitle = `<![CDATA[
+    **24-hour ETH Change**
+    > **Price 24 hours ago:** $${new Intl.NumberFormat().format(ethPrice24hrAgo)}
+    > **Current price:** $${new Intl.NumberFormat().format(ethPriceNow)}
+    > **24h change:** ${eth24hrChange.toFixed(2)}%
+    ]]>`;
 
   const xml = `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
