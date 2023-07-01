@@ -35,6 +35,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
         <title>24-hour BTC Change</title>
         <link>https://bankkrss.vercel.app/btc</link>
         <description>Bitcoin - Price 24 hours ago: $${new Intl.NumberFormat().format(btcPrice24hrAgo)}, Current price: $${new Intl.NumberFormat().format(btcPriceNow)}, 24h change: ${btc24hrChange.toFixed(2)}%.</description>
+        <pubDate>${pubDate}</pubDate>
       </item>
       <item>
         <title>24-hour ETH Change</title>
