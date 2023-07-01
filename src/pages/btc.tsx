@@ -38,9 +38,9 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
         {
           label: 'BTC',
           data: Object.values(hourlyBtcPrices),
-          borderColor: 'blue',
-          backgroundColor: 'rgba(0, 0, 255, 0.1)', // This will make the area under the line filled with a light blue color
-          fill: true, // This will make the area under the line filled
+          borderColor: 'orange',
+          backgroundColor: 'rgba(255, 165, 0, 0.8)',
+          fill: true,
         },
       ],
     },
@@ -89,7 +89,8 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     > **Current price:** $${new Intl.NumberFormat().format(btcPriceNow)}
     > **24h change:** ${btc24hrChange.toFixed(2)}%
     ]]>`;
-  
+
+
   const xml = `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
